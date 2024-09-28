@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Ultimate</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/ico/logo.ico" type="image/x-icon">
+    <link rel="icon" href="assets/logo/logo.png" type="image/png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Chess CSS -->
+    <link rel="stylesheet" href="css/chess_styles.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#" data-i18n="title">Chess Ultimate</a>
+            <div class="ms-auto d-flex align-items-center">
+                <div class="dropdown me-3">
+                    <button class="nav-btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-language"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="es">Español</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="fr">Français</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="de">Deutsch</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="ja">日本語</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="ko">한국어</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="zh">中文</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown me-3">
+                    <button class="nav-btn dropdown-toggle" type="button" id="colorSchemeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="colorSchemeDropdown">
+                        <li><a class="dropdown-item" href="#" data-scheme="blue">Blue</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="green">Green</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="red">Red</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="purple">Purple</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="orange">Orange</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="teal">Teal</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="pink">Pink</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="brown">Brown</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="gray">Gray</a></li>
+                        <li><a class="dropdown-item" href="#" data-scheme="blackwhite">Black & White</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown me-3">
+                    <button class="nav-btn dropdown-toggle" type="button" id="pieceStyleDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-chess"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="pieceStyleDropdown">
+                        <li><a class="dropdown-item" href="#" data-style="unicode">Unicode</a></li>
+                        <li><a class="dropdown-item" href="#" data-style="classic">Classic</a></li>
+                        <li><a class="dropdown-item" href="#" data-style="modern">Modern</a></li>
+                        <li><a class="dropdown-item" href="#" data-style="aesthetic">Aesthetic</a></li>
+                        <li><a class="dropdown-item" href="#" data-style="pixel">Pixel</a></li>
+                        <li><a class="dropdown-item" href="#" data-style="_3d_BW">Brown & White 3D</a></li>
+                        <li><a class="dropdown-item" href="#" data-style="_2d_BW">Brown & White 2D</a></li>
+                    </ul>
+                </div>
+                <button id="settings-btn" class="nav-btn me-3">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button id="toggle-info" class="nav-btn me-3">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <a href="https://github.com/voxdroid" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i> <span data-i18n="createdBy">Created by voxdroid</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="landing-page">
+        <h1 data-i18n="title" class="landing-page-transition">Chess Ultimate</h1>
+        <img src="assets/logo/logo.png" alt="Chess Ultimate Logo" id="game-logo" class="landing-page-transition" height="400" width="400">
+        <button id="play-button" class="btn btn-light btn-lg mt-4 btn-hover-animation landing-page-transition" data-i18n="play">Play Game</button>
+    </div>
+
+    <div id="game-container" class="container-fluid">
+        <div id="board-and-captured-container">
+            <div id="board-container">
+                <div id="rank-labels"></div>
+                <div id="chessboard-wrapper">
+                    <div id="chessboard"></div>
+                    <div id="file-labels"></div>
+                </div>
+            </div>
+            <div id="captured-pieces">
+                <div id="white-captured" class="captured-piece-container">
+                    <div class="captured-piece-header" data-i18n="whiteCaptured">White Captured</div>
+                    <div class="captured-pieces-list"></div>
+                </div>
+                <div id="black-captured" class="captured-piece-container">
+                    <div class="captured-piece-header" data-i18n="blackCaptured">Black Captured</div>
+                    <div class="captured-pieces-list"></div>
+                </div>
+            </div>
+        </div>
+        <div id="game-info" class="hidden">
+            <button id="game-info-toggle">&lt;</button>
+            <div id="timer-container">
+                <div id="white-timer" class="timer"></div>
+                <div id="black-timer" class="timer"></div>
+            </div>
+            <div id="move-history">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th data-i18n="white">White</th>
+                            <th data-i18n="black">Black</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="analysis-bar">
+                <div id="analysis-progress"></div>
+            </div>
+            <div id="controls">
+                <button id="start-timer" class="btn btn-primary control-btn btn-hover-animation" data-i18n="startTimer">Start Timer</button>
+                <button id="new-game" class="btn btn-primary control-btn btn-hover-animation" data-i18n="newGame">New Game</button>
+                <button id="undo-move" class="btn btn-primary control-btn btn-hover-animation" data-i18n="undoMove">Undo Move</button>
+                <button id="redo-move" class="btn btn-primary control-btn btn-hover-animation" data-i18n="redoMove">Redo Move</button>
+                <button id="flip-board" class="btn btn-primary control-btn btn-hover-animation" data-i18n="flipBoard">Flip Board</button>
+                <button id="ai-move" class="btn btn-primary control-btn btn-hover-animation" data-i18n="aiMove">AI Move</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="promotion-modal">
+        <div id="promotion-choices"></div>
+    </div>
+
+    <div id="notification"></div>
+
+    <div id="settings-modal">
+        <div id="settings-content">
+            <h2 data-i18n="settings">Settings</h2>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="show-labels" checked>
+                <label class="form-check-label" for="show-labels" data-i18n="showLabels">Show board labels</label>
+            </div>
+            <div class="mb-3">
+                <label for="board-size" class="form-label" data-i18n="boardSize">Board size</label>
+                <div class="d-flex align-items-center">
+                    <button id="decrease-size" class="btn btn-secondary me-2">-</button>
+                    <input type="range" class="form-range" min="50" max="100" value="80" id="board-size">
+                    <button id="increase-size" class="btn btn-secondary ms-2">+</button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="animation-speed" class="form-label" data-i18n="animationSpeed">Animation Speed</label>
+                <input type="range" class="form-range" min="0.1" max="2" step="0.1" value="1" id="animation-speed">
+            </div>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="sound-effects" checked>
+                <label class="form-check-label" for="sound-effects" data-i18n="soundEffects">Sound Effects</label>
+            </div>
+            <button id="close-settings" class="btn btn-primary btn-hover-animation" data-i18n="close">Close</button>
+        </div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Chess JS -->
+    <script src="js/chess_script.js"></script>
+    
+</body>
+</html>
