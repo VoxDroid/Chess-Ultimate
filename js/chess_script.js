@@ -582,19 +582,9 @@ function handleSquareClick(event) {
         const startCol = parseInt(selectedPiece.dataset.col);
         
         if (isValidMove(startRow, startCol, row, col)) {
-            if (isInCheck(currentPlayer)) {
-                if (doesMoveResolveCheck(startRow, startCol, row, col)) {
-                    const move = movePiece(startRow, startCol, row, col);
-                    updateMoveHistory(move);
-                    switchPlayer();
-                } else {
-                    showNotification("Invalid move: King is still in check!");
-                }
-            } else {
-                const move = movePiece(startRow, startCol, row, col);
-                updateMoveHistory(move);
-                switchPlayer();
-            }
+            const move = movePiece(startRow, startCol, row, col);
+            updateMoveHistory(move);
+            switchPlayer();
         }
         
         clearHighlights();
@@ -863,6 +853,20 @@ function isValidCastling(startRow, startCol, endCol) {
     }
 
     return true;
+}
+
+function isSquareUnderAttack(row, col, color) {
+    for (let r = 0; r < BOARD_SIZE; r++) {
+        for (let c = 0; c < BOARD_SIZE; c++) {
+            const piece = gameBoard[r][c];
+            if (piece && piece.color !== color) {
+                if (isValidMove(r, c, row, col)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 // Move a piece
